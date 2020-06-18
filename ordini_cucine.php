@@ -97,7 +97,7 @@
 	  <div class="header no-shadow">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-sm-4">
+                    <div class="col-sm-12">
                         <div class="logo">
                             <h1>Gestione Albergo</h1>
                         </div>
