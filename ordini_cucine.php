@@ -124,8 +124,8 @@
   </div>
 
   <div class="content_box">
-    <div class="left_bar">
-      <ul class=" nav-tabs--vertical nav" role="navigation">
+    <div class="top_bar">
+      <ul class=" nav-tabs--horizontal nav" role="navigation">
         <li class="nav-item">
           <div class="nav-link" role="tab" aria-controls="piatto" style="font-weight: 600">Filtra per:</div>
         </li>
