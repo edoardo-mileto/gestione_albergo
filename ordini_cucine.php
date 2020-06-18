@@ -1,15 +1,15 @@
 <?php session_start(); ?>
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>ordini cucine</title>
   <meta charset="utf-8">
   <meta name="robots" content="noindex, nofollow">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet"
-    id="bootstrap-css">
-   <link rel="stylesheet" href="assets/css/style.css"/>
-   <link rel="stylesheet" href="assets/css/admin.css"/>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/admin.css" />
   <style type="text/css">
     .content_box {
       float: left;
@@ -64,66 +64,70 @@
       transform: rotate(270deg);
       z-index: 999;
     }
-    li a{
+
+    li a {
       background: #C8E3DD;
     }
-    a.active{
+
+    a.active {
       background: #77BBAB;
-      }
-    a:hover{
+    }
+
+    a:hover {
       background: #84C1B3;
-      }
+    }
   </style>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
   <script type="text/javascript">
-    window.alert = function () { };
+    window.alert = function() {};
     var defaultCSS = document.getElementById('bootstrap-css');
+
     function changeCSS(css) {
       if (css) $('head > link').filter(':first').replaceWith('<link rel="stylesheet" href="' + css + '" type="text/css" />');
       else $('head > link').filter(':first').replaceWith(defaultCSS);
     }
-    $(document).ready(function () {
+    $(document).ready(function() {
       var iframe_height = parseInt($('html').height());
       window.parent.postMessage(iframe_height, 'https://bootsnipp.com');
     });
   </script>
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet"
-    id="bootstrap-css">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
-<body>
-	  <div class="header no-shadow">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="logo">
-                            <h1>Gestione Albergo</h1>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <br>
 
-                    <div class="col-sm-8" style="max-width: 100%;">
-                        <ul class="header-menu pull-right">
-                            <li><a href="./logout.php">Logout</a></li>
-                        </ul>
-User: <?php 
-  echo "" . $_SESSION["usr_name"] . " " . $_SESSION["usr_surname"] . ""; 
-  ?>
+<body>
+  <div class="header no-shadow">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="logo">
+            <h1>Gestione Albergo</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   <br>
-  Utenza ristretta: <?php echo $_SESSION["usr_role"]; ?>
-  <br>
-</div>
+
+  <div class="col-sm-8" style="max-width: 100%;">
+    <ul class="header-menu pull-right">
+      <li><a href="./logout.php">Logout</a></li>
+    </ul>
+    User: <?php
+        echo "" . $_SESSION["usr_name"] . " " . $_SESSION["usr_surname"] . "";
+      ?>
+    <br>
+    Utenza ristretta: <?php echo $_SESSION["usr_role"]; ?>
+    <br>
+  </div>
 
   <div class="content_box">
     <div class="left_bar">
       <ul class=" nav-tabs--vertical nav" role="navigation">
         <li class="nav-item">
-          <div class="nav-link" role="tab"aria-controls="piatto" style="font-weight: 600">Filtra per:</div>
+          <div class="nav-link" role="tab" aria-controls="piatto" style="font-weight: 600">Filtra per:</div>
         </li>
         <li class="nav-item">
           <a href="#lorem" class="nav-link" data-toggle="tab" role="tab" aria-controls="lorem">Piatto</a>
@@ -144,14 +148,14 @@ User: <?php
               </tr>
             </thead>
             <tbody>
-  <?php 
-  	require_once("./dataaccess/requests.php");
-  	$ordersByPlate = Request::loadOrdersByPlate();
+              <?php
+              	require_once("./dataaccess/requests.php");
+              	$ordersByPlate = Request::loadOrdersByPlate();
 
-  	foreach ($ordersByPlate as $o) {
-  		echo "<tr><td>" . $o->piatto . "</td><td>" . $o->numPiatto . "</td></tr>";
-  	}
-  ?>
+              	foreach ($ordersByPlate as $o) {
+              		echo "<tr><td>" . $o->piatto . "</td><td>" . $o->numPiatto . "</td></tr>";
+              	}
+              ?>
             </tbody>
           </table>
         </div>
@@ -164,16 +168,17 @@ User: <?php
               </tr>
             </thead>
             <tbody>
-    <?php 
-	  	require_once("./dataaccess/requests.php");
-	  	$ordersByPlate = Request::loadOrdersByRoom();
+              <?php
+          	  	require_once("./dataaccess/requests.php");
+          	  	$ordersByPlate = Request::loadOrdersByRoom();
 
-	  	foreach ($ordersByPlate as $o) {
-	  		echo "<tr><td>" . $o->stanza . "</td><td>" . $o->piattiOrd . "</td></tr>";
-	  	}
-	  ?>
+          	  	foreach ($ordersByPlate as $o) {
+          	  		echo "<tr><td>" . $o->stanza . "</td><td>" . $o->piattiOrd . "</td></tr>";
+          	  	}
+          	  ?>
             </tbody>
           </table>
         </div>
 </body>
+
 </html>

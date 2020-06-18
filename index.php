@@ -6,10 +6,10 @@
     if (!array_key_exists("username", $_POST) ||
       !array_key_exists("password", $_POST))
     {
-      header("Location: ./login.php");	     
+      header("Location: ./login.php");
       exit;
     }
-    
+
     require_once('./dataaccess/users.php');
 
     // Cerco l'utente
@@ -38,9 +38,9 @@
         }
       }
     }
-  
+
     if (!$check) // Se l'utente non c'è
-    {   
+    {
       header("Location: ./login.php?err=1");
       exit;
     }
@@ -52,8 +52,8 @@
   <title>home</title>
 </head>
 <body>
-ciao <?php 
-  echo "" . $_SESSION["usr_name"] . " " . $_SESSION["usr_surname"] . ""; 
+  ciao <?php
+    echo "" . $_SESSION["usr_name"] . " " . $_SESSION["usr_surname"] . "";
   ?>
   <br>
   sei un utente di tipo: <?php echo $_SESSION["usr_role"]; ?>
