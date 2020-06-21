@@ -100,9 +100,13 @@
         echo '<div class="col-6 col-md-2">Data Creazione:<br>' . $a->dataCreazione . '</div>';
         echo '<div class="col-sm-2">Descrizione:<br>' . $a->servizio . '</div>';
         echo '<div class="col-6 col-md-2">';
-        echo '<button type="button" class="btn btn-danger btn-block">Rifiuta</button></div>';
+        echo "<form action=\"rejectReq.php\" method=\"POST\">";
+        echo "<input type='hidden' name='request_reject' value='". $a->idRichiesta ."'>";
+        echo '<input type="submit" class="btn btn-danger btn-block" value="Rifiuta"></form></div>';
         echo '<div class="col-6 col-md-2">';
-        echo '<button type="submit" class="btn btn-success btn-block">Completa</button></div></div>';
+        echo "<form action=\"completeReq.php\" method=\"POST\">";
+        echo "<input type='hidden' name='request_complete' value='". $a->idRichiesta ."'>";
+        echo '<input type="submit" class="btn btn-success btn-block" value="Completa"></form></div></div>';
       }
     ?>
   </div>
@@ -121,7 +125,7 @@
         echo '<div class="col-6 col-md-2">';
         echo "<form action=\"rejectReq.php\" method=\"POST\">";
         echo "<input type='hidden' name='request_reject' value='". $w->idRichiesta ."'>";
-        echo '<input type="submit" class="btn btn-danger btn-block" value="Rifiuta"></form></button></div>';
+        echo '<input type="submit" class="btn btn-danger btn-block" value="Rifiuta"></form></div>';
         echo '<div class="col-6 col-md-2">';
         echo "<form action=\"acceptReq.php\" method=\"POST\">";
         echo "<input type='hidden' name='request_accept' value='". $w->idRichiesta ."'>";

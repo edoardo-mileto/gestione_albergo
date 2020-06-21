@@ -6,7 +6,7 @@
     exit;
   }
 
-  if (!array_key_exists("request_accept", $_POST))
+  if (!array_key_exists("request_reject", $_POST))
   {
       header("location: index.php");
       exit;

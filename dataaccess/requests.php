@@ -29,7 +29,7 @@ class Request
     public function completeRequest(){
       $conn = connect();
 
-      $query = "";
+      $query = "UPDATE `richieste` SET `stato` = 'completata', `dataTermine` = current_timestamp() WHERE `richieste`.`idRichiesta` = " . $this->idRichiesta . "";
 
       $result = $conn->query($query);
 

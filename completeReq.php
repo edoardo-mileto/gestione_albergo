@@ -6,18 +6,15 @@
     exit;
   }
 
-  if (!array_key_exists("request_accept", $_POST))
+  if (!array_key_exists("request_complete", $_POST))
   {
       header("location: index.php");
       exit;
   }
 
-
-  echo "<script type='text/javascript'>alert('ciao');</script>";
   require_once('dataaccess/requests.php');
   $r = new Request();
-  $r->idRichiesta = $_POST['request_accept'];
-  $r->utente = $_SESSION['user_id'];
+  $r->idRichiesta = $_POST['request_complete'];
   $r->completeRequest();
 
   header("location: index.php");
