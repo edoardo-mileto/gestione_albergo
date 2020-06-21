@@ -45,6 +45,10 @@
       exit;
     }
   }
+  if($_SESSION['usr_role'] == "cucina"){
+    header("Location: ./ordini_cucine.php");
+    exit;
+  }
 ?>
 <!DOCTYPE html>
 <html>
@@ -83,9 +87,27 @@
     </div>
   </div>
   <br>
-  <br>
   <div class="container">
+    <h4> Le tue richieste: </h4>
+    <?php
+      require_once("./dataaccess/requests.php");
+      $acceptedRequests = Request::loadAcceptedRequests($_SESSION['user_id']);
 
+      foreach ($acceptedRequests as $a) {
+        echo '<div class="row" style="text-align: center;">';
+        echo '<div class="col-sm-2">Richiesta ' . $a->idRichiesta . '</div>';
+        echo '<div class="col-6 col-md-2">Stanza ' . $a->stanza . '</div>';
+        echo '<div class="col-6 col-md-2">Data Creazione:<br>' . $a->dataCreazione . '</div>';
+        echo '<div class="col-sm-2">Descrizione:<br>' . $a->servizio . '</div>';
+        echo '<div class="col-6 col-md-2">';
+        echo '<button type="button" class="btn btn-danger btn-block">Rifiuta</button></div>';
+        echo '<div class="col-6 col-md-2">';
+        echo '<button type="submit" class="btn btn-success btn-block">Completa</button></div></div>';
+      }
+    ?>
+  </div>
+  <div class="container">
+    <h4> Richieste in attesa: </h4>
     <?php
       require_once("./dataaccess/requests.php");
       $waitingRequests = Request::loadWaitingRequests();
@@ -97,9 +119,13 @@
         echo '<div class="col-6 col-md-2">Data Creazione:<br>' . $w->dataCreazione . '</div>';
         echo '<div class="col-sm-2">Descrizione:<br>' . $w->servizio . '</div>';
         echo '<div class="col-6 col-md-2">';
-        echo '<button type="button" class="btn btn-danger btn-block">Rifiuta</button></div>';
+        echo "<form action=\"rejectReq.php\" method=\"POST\">";
+        echo "<input type='hidden' name='request_reject' value='". $w->idRichiesta ."'>";
+        echo '<input type="submit" class="btn btn-danger btn-block" value="Rifiuta"></form></button></div>';
         echo '<div class="col-6 col-md-2">';
-        echo '<button type="button" class="btn btn-primary btn-block">Accetta</button></div></div>';
+        echo "<form action=\"acceptReq.php\" method=\"POST\">";
+        echo "<input type='hidden' name='request_accept' value='". $w->idRichiesta ."'>";
+        echo '<input type="submit" class="btn btn-primary btn-block" value="Accetta"></form></div></div>';
       }
     ?>
   </div>
