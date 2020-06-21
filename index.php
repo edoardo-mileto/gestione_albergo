@@ -50,12 +50,58 @@
 <html>
 <head>
   <title>home</title>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="assets/css/style2.css" />
+  <link rel="stylesheet" href="assets/css/admin2.css" />
+  <link rel="stylesheet" href="assets/css/bootstrap.css" />
+  <link rel="stylesheet" href="assets/css/grid.css" />
 </head>
 <body>
-  ciao <?php
-    echo "" . $_SESSION["usr_name"] . " " . $_SESSION["usr_surname"] . "";
-  ?>
+  <div style="width: 100%;
+              background: #239177;
+              position: fixed;
+              top: 0px;
+              left: 0px;
+              z-index: 999;">
+    <div style="padding-right: 15px;
+                padding-left: 15px;
+                margin-right: auto;
+                margin-left: auto;
+                max-width: 1200px;">
+      <div style="margin: 0px -15px;">
+        <div style="width: 100%;">
+          <div style="line-height: 48px;
+                      font-weight: 500;
+                      font-size: 2.5rem;
+                      color: white;">
+            <h1>Gestione Albergo</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   <br>
-  sei un utente di tipo: <?php echo $_SESSION["usr_role"]; ?>
+  <br>
+  <div class="container">
+
+    <?php
+      require_once("./dataaccess/requests.php");
+      $waitingRequests = Request::loadWaitingRequests();
+
+      foreach ($waitingRequests as $w) {
+        echo '<div class="row" style="text-align: center;">';
+        echo '<div class="col-sm-2">Richiesta ' . $w->idRichiesta . '</div>';
+        echo '<div class="col-6 col-md-2">Stanza ' . $w->stanza . '</div>';
+        echo '<div class="col-6 col-md-2">Data Creazione:<br>' . $w->dataCreazione . '</div>';
+        echo '<div class="col-sm-2">Descrizione:<br>' . $w->servizio . '</div>';
+        echo '<div class="col-6 col-md-2">';
+        echo '<button type="button" class="btn btn-danger btn-block">Rifiuta</button></div>';
+        echo '<div class="col-6 col-md-2">';
+        echo '<button type="button" class="btn btn-primary btn-block">Accetta</button></div></div>';
+      }
+    ?>
+  </div>
 </body>
 </html>

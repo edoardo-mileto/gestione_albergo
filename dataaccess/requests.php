@@ -10,52 +10,27 @@ class Request
     var $dataCreazione;
     var $dataPresaInCarico;
     var $dataTermine;
-    var $tipoServizio;
+    var $servizio;
     var $piatto;
 
     var $numPiatto;
 
-    /*public static function loadRequests()
-    {
+    public static function loadWaitingRequests(){
         $res = array();
 
         $conn = connect();
 
-        $query = " quack";
-
-        $result = $conn->query($query);
-
-        if ($result->num_rows) {
-            while ($row = $result->fetch_assoc()) {
-                $r = new Post();
-                $p->post_id = $row["post_id"];
-                $p->date = $row["date"];
-                $p->message = $row["message"];
-                $p->user = new Utente();
-                $p->user->user_id = $row["user"];
-                $p->user->username = $row["name"] . " " . $row["surname"];
-                $res[] = $p;
-            }
-        }
-
-        $conn->close();
-
-        return $res;
-    }*/
-    public static function loadOrdersByPlate(){
-    	$res = array();
-
-        $conn = connect();
-
-        $query = "SELECT nomePiatto, COUNT(idPiatto) FROM richieste r INNER JOIN piatto p ON r.piatto = p.idPiatto GROUP BY r.piatto";
+        $query = "SELECT * FROM richieste r INNER JOIN tipiservizi ts ON r.tipoServizio = ts.idTipoServizio WHERE r.utente IS NULL";
 
         $result = $conn->query($query);
 
         if ($result->num_rows) {
             while ($row = $result->fetch_assoc()) {
                 $r = new Request();
-                $r->piatto = $row["nomePiatto"];
-                $r->numPiatto = $row["COUNT(idPiatto)"];
+                $r->idRichiesta = $row["idRichiesta"];
+                $r->stanza = $row["stanza"];
+                $r->dataCreazione = $row["dataCreazione"];
+                $r->servizio = $row["nomeServizio"];
                 $res[] = $r;
             }
         }
@@ -64,6 +39,34 @@ class Request
 
         return $res;
     }
+
+    /*public function loadAcceptedRequests(){
+
+    }*/
+
+    public static function loadOrdersByPlate(){
+    	$res = array();
+
+      $conn = connect();
+
+      $query = "SELECT nomePiatto, COUNT(idPiatto) FROM richieste r INNER JOIN piatto p ON r.piatto = p.idPiatto GROUP BY r.piatto";
+
+      $result = $conn->query($query);
+
+      if ($result->num_rows) {
+          while ($row = $result->fetch_assoc()) {
+              $r = new Request();
+              $r->piatto = $row["nomePiatto"];
+              $r->numPiatto = $row["COUNT(idPiatto)"];
+              $res[] = $r;
+          }
+      }
+
+      $conn->close();
+
+      return $res;
+    }
+
     public static function loadOrdersByRoom(){
         $res = array();
 

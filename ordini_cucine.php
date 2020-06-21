@@ -48,6 +48,11 @@
       font-weight: 550;
     }
 
+    .nav-link{
+      color: black;
+      font-weight: 550;
+    }
+
     .nav-tabs--vertical li a.active::after {
       content: "";
       border-color: #1276F0;
