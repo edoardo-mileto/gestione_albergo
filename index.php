@@ -57,8 +57,6 @@
   <meta charset="utf-8">
   <meta name="robots" content="noindex, nofollow">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="assets/css/style2.css" />
-  <link rel="stylesheet" href="assets/css/admin2.css" />
   <link rel="stylesheet" href="assets/css/bootstrap.css" />
   <link rel="stylesheet" href="assets/css/grid.css" />
 </head>
@@ -88,7 +86,23 @@
   </div>
   <br>
   <div class="container">
-    <h4> Le tue richieste: </h4>
+  <div style="max-width: 100%;">
+    <ul style="list-style: none; margin-top: 7px; float: right;">
+      <li style="display: inline-block;">
+        <a href="./logout.php"><button type="button" class="btn btn-secondary">Logout</button></a>
+      </li>
+    </ul>
+    User: <?php
+        echo "" . $_SESSION["usr_name"] . " " . $_SESSION["usr_surname"] . "";
+      ?>
+    <br>
+    Utenza ristretta: <?php echo $_SESSION["usr_role"]; ?>
+    <br>
+  </div>
+</div>
+<br>
+  <div class="container">
+    <h4> Le tue richieste prese in carico:</h4>
     <?php
       require_once("./dataaccess/requests.php");
       $acceptedRequests = Request::loadAcceptedRequests($_SESSION['user_id']);
