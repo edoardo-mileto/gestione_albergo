@@ -1,4 +1,12 @@
-<?php session_start(); ?>
+<?php
+  session_start();
+  if($_SESSION['usr_role'] != "admin"){
+    if($_SESSION['usr_role'] != "cucina"){
+      header("Location: ./index.php");
+      exit;
+    }
+  }
+?>
 <!DOCTYPE html>
 <html>
 
