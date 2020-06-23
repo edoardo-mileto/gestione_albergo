@@ -65,7 +65,7 @@
             <p class="h3">Effettua il Login</p>
             <form action="./index.php" method="post" style="max-width:400px;margin:0px auto;">
               <div class="form-group">
-                <input type="text" name="username" placeholder="username" class="input-lg col-sm-12" />
+                <input type="text" name="username" placeholder="Username" class="input-lg col-sm-12" />
               </div>
               <div class="form-group">
                 <input type="password" placeholder="Password" name="password" class="input-lg col-sm-12" />
