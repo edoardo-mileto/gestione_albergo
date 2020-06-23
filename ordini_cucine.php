@@ -143,7 +143,7 @@
           <div class="nav-link" role="tab" aria-controls="piatto" style="font-weight: 600">Filtra per:</div>
         </li>
         <li class="nav-item">
-          <a href="#lorem" class="nav-link" data-toggle="tab" role="tab" aria-controls="lorem">Piatto</a>
+          <a href="#lorem" class="nav-link active" data-toggle="tab" role="tab" aria-controls="lorem">Piatto</a>
         </li>
         <li class="nav-item">
           <a href="#stanza" class="nav-link " data-toggle="tab" role="tab" aria-controls="stanza">Stanza</a>

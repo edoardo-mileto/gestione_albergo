@@ -107,6 +107,9 @@
       require_once("./dataaccess/requests.php");
       $acceptedRequests = Request::loadAcceptedRequests($_SESSION['user_id']);
 
+      if(empty($acceptedRequests)){
+        echo "Nessuna richiesta attualmente presa in carico <br><br>";
+      }else{
       foreach ($acceptedRequests as $a) {
         echo '<div class="row" style="text-align: center;">';
         echo '<div class="col-sm-2">Richiesta ' . $a->idRichiesta . '</div>';
@@ -122,6 +125,7 @@
         echo "<input type='hidden' name='request_complete' value='". $a->idRichiesta ."'>";
         echo '<input type="submit" class="btn btn-success btn-block" value="Completa"></form></div></div>';
       }
+    }
     ?>
   </div>
   <div class="container">
